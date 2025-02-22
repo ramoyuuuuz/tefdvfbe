@@ -1,0 +1,1007 @@
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #0a0a0a;
+        color: white;
+        text-align: center;
+    }
+
+    #loading-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #1f1f1f;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        opacity: 1; /* Commence avec une opacité de 1 */
+        transition: opacity 1s ease-out; /* Transition douce pour l'opacité */
+    }
+    
+    .loading-logo {
+        width: 80px;
+        transition: all 0.5s ease;
+        filter: grayscale(100%); /* Logo en gris au début */
+        animation: highlight-logo 6s ease-in-out infinite; /* Animation du logo */
+        width: 250px;
+    }
+    
+
+    @keyframes highlight-logo {
+        0% {
+            filter: grayscale(100%); /* Logo en gris */
+            transform: scale(1);
+        }
+        50% {
+            filter: grayscale(0%); /* Logo coloré */
+            transform: scale(1.1); /* Légère augmentation de la taille */
+        }
+        100% {
+            filter: grayscale(0%); /* Logo coloré */
+            color: gold; /* Surbrillance dorée */
+            transform: scale(1.2); /* Agrandissement plus marqué */
+        }
+    }
+
+    header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
+        transition: all 0.3s ease;
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: gold;
+        transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+        transform: scale(1.1);
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin: 0 15px;
+        position: relative;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s ease;
+        position: relative;
+        padding-bottom: 5px;
+    }
+
+    nav ul li a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: gold;
+        transition: width 0.3s ease, left 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+        width: 100%;
+        left: 0;
+    }
+
+    nav ul li a:hover {
+        color: gold;
+    }
+
+    main {
+        padding-top: 80px;
+    }
+
+    .section {
+        display: none;
+        padding: 80px 20px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .scrolled {
+        background: rgba(10, 10, 10, 0.95);
+        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+    }
+
+
+    /* =========================================
+    Hero Section
+    ========================================= */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3em 1em;
+        max-width: 100%;
+        margin: 0 auto;
+        background: linear-gradient(135deg, #0a0a0a, #222222);
+        border-radius: 0.625em;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        color: #f1f1f1;
+        margin-bottom: 2em;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+        color: #d4af37;
+        text-transform: uppercase;
+        letter-spacing: 0.0625em;
+        font-weight: 700;
+        margin-bottom: 0.5em;
+        text-shadow: 0 0 0.9375em rgba(255, 215, 0, 0.8);
+    }
+
+    .hero p {
+        font-size: 1.1em;
+        color: #d1d1d1;
+        line-height: 1.6;
+        margin-bottom: 1.5em;
+        font-weight: 300;
+    }
+
+    .hero .gold {
+        color: #d4af37;
+        font-weight: bold;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: 18.75em;
+        height: auto;
+        transition: transform 0.3s ease, filter 0.4s ease, box-shadow 0.4s ease;
+        filter: grayscale(100%);
+        border-radius: 0.625em;
+        object-fit: cover;
+    }
+
+    .hero-image img:hover {
+        filter: grayscale(0%);
+        box-shadow: 0 0 1em 0.3125em rgba(255, 215, 0, 0.8);
+        transform: scale(1.05);
+    }
+
+    /* Media Queries pour la responsivité */
+    @media (min-width: 768px) {
+        .hero {
+            flex-direction: row;
+            text-align: left;
+            padding: 4em 2em;
+        }
+
+        .hero-text {
+            max-width: 60%;
+            margin-right: 2em;
+            margin-bottom: 0;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        .hero-image img {
+            max-width: 21.875em;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hero {
+            padding: 5em 3em;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+        }
+
+        .hero-image img {
+            max-width: 25em;
+        }
+    }
+
+
+    .hero-image img:hover {
+        filter: grayscale(0%); 
+        box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.8);
+        transform: scale(1.1);
+    }
+
+    .hero-image {
+        perspective: 1200px; 
+    }
+
+    .hero-image img {
+        transform-style: preserve-3d;
+    }
+
+    .hero-image img:hover {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+
+    .hero-image img:active {
+        transition: none;
+    }
+
+    .hero-image img:hover {
+        transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+    }
+
+    .hero-image img {
+        --rotate-x: 0deg;
+        --rotate-y: 0deg;
+    }
+
+    .hero-image img:hover {
+        transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+    }
+
+
+    #apropos {
+        padding: 2em 1em; /* Ajustement pour petits écrans */
+        background-color: #121212;
+        color: #f1f1f1;
+        text-align: left;
+        max-width: 1200px; /* Largeur maximale */
+        margin: 0 auto;
+        border-radius: 1.25em; /* 20px */
+        box-shadow: 0 0.25em 0.625em rgba(255, 215, 0, 0.1); /* Ajustement des ombres */
+    }
+
+    #apropos h2 {
+        font-size: 2.5em; /* 40px */
+        color: #d4af37;
+        font-weight: 700;
+        margin-bottom: 0.75em; /* Ajustement pour petits écrans */
+        letter-spacing: 0.0625em; /* 1px */
+        text-transform: uppercase;
+        text-shadow: 0 0 0.9375em rgba(255, 215, 0, 0.6);
+        text-align: center; /* Centrage sur petits écrans */
+    }
+
+    .apropos-content {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        border-radius: 10px; /* Coins arrondis pour .apropos-content */
+        overflow: hidden; /* Assure que tout débordement est masqué */
+     
+    }
+
+    .bio {
+        flex: 1;
+        background-color: #1f1f1f;
+        padding: 1.25em; /* 20px */
+        border-radius: 0.625em; /* 10px */
+        box-shadow: 0 0.25em 0.625em rgba(255, 215, 0, 0.2);
+        line-height: 1.6;
+        font-size: 1em; /* 16px */
+        color: #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .bio:hover {
+        box-shadow: 0 0.375em 0.9375em rgba(255, 215, 0, 0.4);
+    }
+    .infos {
+        padding: 20px;
+        border-radius: 10px; /* Coins arrondis pour .infos */
+        background-color: #1f1f1f; /* Couleur de fond claire */
+        box-shadow: 0 0.25em 0.625em rgba(255, 215, 0, 0.2);
+    }
+
+    .infos h3 {
+        font-size: 1.375em; /* 22px */
+        color: #d4af37;
+        margin-bottom: 0.625em; /* 10px */
+        font-weight: 600;
+    }
+
+    .infos ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .infos li {
+        font-size: 1em; /* 16px */
+        margin-bottom: 0.5em; /* 8px */
+        color: #e0e0e0;
+    }
+
+    /* Media Query pour les écrans plus larges */
+    @media (min-width: 768px) {
+        #apropos {
+            padding: 3em 2em; /* Espacement augmenté */
+        }
+
+        #apropos h2 {
+            text-align: left; /* Titre aligné à gauche */
+            margin-bottom: 1.25em; /* 20px */
+        }
+
+        .apropos-content {
+            flex-direction: row; /* Disposition en ligne */
+            flex-wrap: nowrap; /* Empêcher le retour à la ligne */
+            align-items: stretch; /* Hauteur uniforme */
+        }
+
+        .bio,
+        .infos {
+            flex-basis: calc(50% - 1.25em); /* Ajustement de la largeur */
+        }
+    }
+
+    h3 {
+        font-size: 22px;
+        margin-top: 40px;
+        color: #d4af37;
+        font-weight: 700;
+        border-bottom: 2px solid #d4af37;
+        padding-bottom: 5px;
+    }
+
+    ul {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+
+    ul li {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #e0e0e0;
+    }
+
+    ul li::before {
+        content: "★";
+        color: #d4af37;
+        margin-right: 5px;
+    }
+
+    .section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+        .apropos-content {
+            flex-direction: column;
+        }
+        .bio, .infos {
+            flex: none;
+            width: 100%;
+        }
+    }
+    #competences {
+        padding: 60px 20px;
+        background-color: #121212;
+        color: #f1f1f1;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.1);
+    }
+
+    #competences h3 {
+        font-size: 40px;
+        color: #d4af37; 
+        font-weight: 700;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); 
+    }
+    .competence-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .competence {
+        text-align: center;
+        background-color: #1f1f1f;
+        padding: 20px;
+        border-radius: 10px;
+        width: 150px;
+        box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
+        transition: all 0.3s ease;
+        box-sizing: border-box; /* Assurer que padding et bordure sont inclus dans la taille de l'élément */
+    }
+
+    .competence:hover {
+        box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4); 
+    }
+
+
+    .competence-logo {
+        width: 80px; 
+        height: 80px; 
+        object-fit: contain; 
+        margin-bottom: 20px;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+
+    .competence-logo:hover {
+        filter: grayscale(0%);
+        transform: scale(1.1); 
+    }
+
+
+    .competence-level .stars {
+        font-size: 20px;
+        color: #d4af37;
+        display: flex;
+        justify-content: center; 
+        gap: 5px;
+        align-items: center;
+    }
+
+    .star {
+        color: #666;
+        transition: all 0.3s ease;
+    }
+
+    .star.filled {
+        color: #d4af37;
+        animation: shine 1.5s ease-in-out infinite;
+    }
+/* Media query pour les tablettes et plus petits écrans */
+@media (max-width: 768px) {
+    .competence {
+        width: 120px; /* Réduit la largeur des cartes sur les écrans plus petits */
+    }
+}
+
+/* Media query pour les téléphones */
+@media (max-width: 480px) {
+    .competence {
+        width: 90%; /* Occupe toute la largeur disponible */
+        margin-bottom: 20px; /* Ajoute un peu d'espace entre les éléments */
+    }
+    .competence-list {
+        justify-content: flex-start; /* Aligne les éléments à gauche pour mieux les adapter sur les petits écrans */
+    }
+}
+    @keyframes shine {
+        0% {
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+        50% {
+            text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 215, 0, 0.8);
+        }
+        100% {
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+    }
+
+
+    #projets {
+        padding: 50px 0;
+        background-color: #0a0a0a; 
+    }
+
+    .projects {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .project {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        background-color: #121212; 
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        animation: glow 1.5s infinite alternate;
+    }
+
+    .project.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .project-content {
+        display: flex;
+        width: 100%;
+    }
+
+    .project-content img {
+        width: 50%;
+        object-fit: cover;
+        height: 300px;
+        border-radius: 10px;
+    }
+
+    .project-description {
+        width: 50%;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .project-description h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .project-description p {
+        font-size: 16px;
+        color: #666666;
+        margin-bottom: 20px;
+    }
+
+    .project-link {
+        display: inline-block;
+        background-color: #d4af37; 
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        position: relative;
+        z-index: 1;
+    }
+
+    .project-link:hover {
+        background-color: #b38b2f;
+    }
+
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37, 0 0 15px #d4af37;
+        }
+        50% {
+            box-shadow: 0 0 20px #d4af37, 0 0 30px #d4af37, 0 0 40px #d4af37;
+        }
+        100% {
+            box-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37, 0 0 15px #d4af37;
+        }
+    }
+
+    .project-content:hover {
+        animation: glow 1.5s infinite alternate;
+    }
+    #pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #pagination button {
+        padding: 10px 20px;
+        background-color: #d4af37;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 0 10px;
+    }
+
+    #pagination button:disabled {
+        background-color: #b40000;
+        cursor: not-allowed;
+    }
+
+    #temoignages {
+        background-color: #0a0a0a;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .testimonial {
+        background-color: #121212;
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        text-align: left;
+        position: relative;
+    }
+
+    .quote {
+        font-size: 1.1em;
+        color: white;
+        line-height: 1.6;
+        margin: 10px 0;
+        position: relative;
+        padding-left: 40px;
+    }
+
+
+    .author {
+        font-size: 0.9em;
+        color: white;
+        font-style: italic;
+        text-align: right;
+        margin-top: 15px;
+    }
+
+/* Media Queries pour les appareils de moins de 768px (tablettes et smartphones) */
+@media (max-width: 768px) {
+    /* Général */
+    body {
+        font-size: 14px; /* Réduire la taille du texte pour une meilleure lisibilité */
+    }
+
+    /* Header */
+    header {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 2.5em 1em;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 1em;
+        margin: 10px 0;
+    }
+
+    .hero-image img {
+        max-width: 100%; /* Images s'ajustent à l'écran */
+        height: auto;
+    }
+
+    /* Animation de la hero section */
+    .hero .hero-text {
+        animation: fadeInUp 1s ease-out;
+    }
+
+    /* Menu */
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        font-size: 1.2em; /* Taille des liens réduite */
+        padding: 10px;
+    }
+
+    /* Sections */
+    .section {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .section.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .section .cta-button {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    /* Cards et autres contenus */
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    .card img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .card .card-title {
+        font-size: 1.5em;
+    }
+
+    /* Footer */
+    footer {
+        padding: 20px;
+        text-align: center;
+    }
+
+    footer p {
+        font-size: 0.9em;
+    }
+
+    /* Animation des éléments */
+    .fade-in {
+        animation: fadeIn 1s ease-out;
+    }
+
+    /* Formulaires */
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+    }
+
+    /* Ajout du menu burger */
+    .burger-menu {
+        display: block;
+        font-size: 2em;
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+    }
+/* Logo dans la navbar */
+.navbar-logo {
+    width: 150px; /* Ajuste la taille de ton logo */
+    height: auto;
+    display: block;
+} .navbar-logo {
+    display: block;
+    margin: 0 auto; /* Centrer le logo sur mobile */
+}
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+        padding: 20px;
+    }
+
+    /* Plus de changements selon les besoins */
+    /* Par exemple, pour la navigation mobile */
+    .burger-menu {
+        display: block;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Par défaut, le bouton burger est caché */
+.burger-menu {
+    display: none; /* Le bouton burger est caché par défaut */
+}
+
+/* Media Queries pour les petits écrans (moins de 768px) */
+@media (max-width: 768px) {
+    /* Afficher le bouton burger seulement sur les petits écrans */
+    .burger-menu {
+        display: block;
+    }
+
+    /* Cacher les liens de navigation par défaut */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: #121212;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+    }
+
+    .nav-links li {
+        margin-bottom: 20px;
+    }
+
+    /* Lorsque le menu burger est activé, afficher les liens */
+    .nav-links.active {
+        display: flex;
+    }
+}
+/* Section À propos */
+#apropos {
+    padding: 20px;
+}
+
+.apropos-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bio, .infos {
+    width: 48%;
+}
+
+.bio p {
+    line-height: 1.6;
+}
+
+/* Responsiveness pour les écrans mobiles */
+@media screen and (max-width: 768px) {
+    #apropos {
+        padding: 15px;
+    }
+
+    .apropos-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .bio, .infos {
+        width: 100%;
+    }
+
+    .bio p {
+        font-size: 1rem;
+    }
+
+    .infos h3 {
+        font-size: 1.1rem;
+    }
+
+    .infos ul {
+        padding-left: 20px;
+    }
+
+    .competence-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+}
+
+/* Pour les petits écrans (mobiles très petits) */
+@media screen and (max-width: 480px) {
+    .bio p {
+        font-size: 0.9rem;
+    }
+
+    .infos ul li {
+        font-size: 0.9rem;
+    }
+
+    .competence-logo {
+        width: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-image {
+        filter: none; /* Supprimer le filtre de gris pour que l'image soit colorée */
+    }
+}
+
+
+/* Par défaut, le logo est visible pour tous les écrans */
+.navbar-logo {
+    display: block;
+}
+
+/* Cacher le logo uniquement pour les écrans larges (ordinateur) */
+@media (min-width: 768px) {
+    .navbar-logo {
+        display: none; /* Cache le logo sur les écrans larges */
+    }
+}
+
+
+/* Par défaut, on cache le logo de la version desktop */
+.navbar-logo-desktop {
+    display: none;
+    width: 100px;  /* Réduit la taille du logo */
+}
+
+/* En mode ordinateur, on affiche le logo et le place à gauche */
+@media (min-width: 768px) {
+    .navbar-logo-desktop {
+        display: block; /* Affiche le logo en mode ordinateur */
+        position: absolute; /* Position absolue pour le mettre à gauche */
+        left: 20px; /* Décalage du logo par rapport au bord gauche */
+        top: 50%; /* Centré verticalement */
+        transform: translateY(-50%); /* Ajuste pour un parfait centrage */
+        width: 200px; /* Taille réduite du logo */
+    }
+
+    .nav-links ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* En mode mobile, on cache le logo de la version desktop */
+@media (max-width: 768px) {
+    .navbar-logo-desktop {
+        display: none; /* Cache le logo sur mobile */
+    }
+
+    .navbar-logo {
+        display: block; /* Affiche le logo mobile */
+    }
+
+    .burger-menu {
+        display: block; /* Affiche le menu burger */
+    }
+
+
+}
